@@ -21,8 +21,7 @@ class CreateBlogPage(View):
             title = form.cleaned_data['title']
             body = form.cleaned_data['body']
             author = form.cleaned_data['author']
-            date = form.cleaned_data['date']
             cover_image_url = form.cleaned_data['cover_image_url']
-            models.BlogPost.submit(title, body, author, date, cover_image_url)
+            models.BlogPost.submit(title, body, author, cover_image_url)
             return redirect('home')
         return render(request, 'createblog.html', {'form': form})

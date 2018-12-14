@@ -10,7 +10,7 @@
         <h1>Create New Blog Post</h1>
         <form action="{% url 'createblog' %}" method="POST">
             {%csrf_token%} {{ form }}
+            <button type="submit">Create New Blog</button>
         </form>
-        <button>Create New Blog</button>
     </body>
 </html>

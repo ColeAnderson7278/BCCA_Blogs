@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>BCCA Blogs</h1>
-        <button>Create New Blog</button>
+        <a href="{% url 'createblog' %}"><button>Create New Blog</button></a>
         <div>
             {% for blog in blogposts %}
             <h2>{{ blog.title }}</h2>

@@ -5,7 +5,7 @@ class BlogPost(models.Model):
     title = models.TextField()
     body = models.TextField()
     author = models.TextField()
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)
     cover_image_url = models.TextField()
 
     def __str__(self):
@@ -16,12 +16,11 @@ class BlogPost(models.Model):
         return BlogPost.objects.all().order_by('-date')
 
     @staticmethod
-    def submit(title, body, author, date, cover_image_url):
+    def submit(title, body, author, cover_image_url):
         BlogPost(
             title=title,
             body=body,
             author=author,
-            date=date,
             cover_image_url=cover_image_url).save()
 
 

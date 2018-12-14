@@ -15,6 +15,15 @@ class BlogPost(models.Model):
     def ordered_blogposts():
         return BlogPost.objects.all().order_by('-date')
 
+    @staticmethod
+    def submit(title, body, author, date, cover_image_url):
+        BlogPost(
+            title=title,
+            body=body,
+            author=author,
+            date=date,
+            cover_image_url=cover_image_url).save()
+
 
 class Comment(models.Model):
     title = models.TextField()

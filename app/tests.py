@@ -18,7 +18,7 @@ class TestHomePageView(TestCase):
                          ordered_blogposts.return_value)
 
 
-class TestCreateBlogPage(TestCase):
+class TestCreateBlogPageView(TestCase):
     def test_renders_createblog_template(self):
         response = self.client.get(reverse('createblog'))
 
@@ -28,3 +28,27 @@ class TestCreateBlogPage(TestCase):
         response = self.client.get(reverse('createblog'))
 
         self.assertIsInstance(response.context['form'], forms.CreateBlogForm)
+
+
+class TestCreateBlogPagePost(TestCase):
+    @patch('app.forms.CreateBlogForm')
+    @patch('app.models.BlogPost.submit')
+    def test_createblog_submitted_with_valid_form(self, submit,
+                                                  CreateBlogForm):
+        form = CreateBlogForm.return_value
+        form.is_valid.return_value = True
+
+        response = self.client.post(reverse('createblog'))
+
+        submit.assert_called_once()
+
+    @patch('app.forms.CreateBlogForm')
+    @patch('app.models.BlogPost.submit')
+    def test_createblog_does_not_submitted_with_invalid_form(
+            self, submit, CreateBlogForm):
+        form = CreateBlogForm.return_value
+        form.is_valid.return_value = False
+
+        response = self.client.post(reverse('createblog'))
+
+        submit.assert_not_called()

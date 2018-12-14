@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from unittest.mock import patch
+from app import forms
 
 
 class TestHomePageView(TestCase):
@@ -22,3 +23,8 @@ class TestCreateBlogPage(TestCase):
         response = self.client.get(reverse('createblog'))
 
         self.assertTemplateUsed(response, 'createblog.html')
+
+    def test_provides_form_for_create_blog_page(self):
+        response = self.client.get(reverse('createblog'))
+
+        self.assertIsInstance(response.context['form'], forms.CreateBlogForm)

@@ -13,4 +13,4 @@ class HomePage(View):
 class CreateBlogPage(View):
     def get(self, request):
         return render(request, 'createblog.html',
-                      {'form': forms.CreateBlogForm})
+                      {'form': forms.CreateBlogForm()})

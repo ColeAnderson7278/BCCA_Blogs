@@ -20,4 +20,5 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomePage.as_view(), name="home"),
+    path('createblog/', views.CreateBlogPage.as_view(), name="createblog"),
 ]

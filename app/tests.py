@@ -15,3 +15,10 @@ class TestHomePageView(TestCase):
 
         self.assertEqual(response.context['blogposts'],
                          ordered_blogposts.return_value)
+
+
+class TestCreateBlogPage(TestCase):
+    def test_renders_createblog_template(self):
+        response = self.client.get(reverse('createblog'))
+
+        self.assertTemplateUsed(response, 'createblog.html')
